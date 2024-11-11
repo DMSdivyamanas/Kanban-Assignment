@@ -2,11 +2,24 @@
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 10px;
-  padding: 15px;
+  padding: 13px;
   box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.05);
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
+  height: 150px; /* Set a constant height */
+}
+
+.card-title {
+  font-size: 16px;
+  margin: 10px 0;
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  font-weight: 500;
 }
 
 .card-icon {
@@ -60,16 +73,6 @@
   position: absolute;
   top: 20px;
   left: 20px;
-}
-
-.card-title {
-  font-size: 18px;
-  margin: 10px 0;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-weight: 500;
 }
 
 .card-footer {

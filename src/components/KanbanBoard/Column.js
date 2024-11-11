@@ -72,6 +72,8 @@ const Column = ({ title, tasks, grouping, sorting, users }) => {
           tag={task.tag}
           priority={task.priority}
           userName={getUserName(task.userId)}
+          grouping={grouping}
+          status={task.status}
         />
       ))}
     </div>

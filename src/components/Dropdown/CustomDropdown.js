@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./CustomDropdown.css";
 import Assets from "../../assets/assests";
 
 const CustomDropdown = ({ options, onChange, label, topOffset }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(options[0]);
+  const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -16,8 +17,21 @@ const CustomDropdown = ({ options, onChange, label, topOffset }) => {
     setIsOpen(false);
   };
 
+  const handleClickOutside = (event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      setIsOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="custom-dropdown">
+    <div className="custom-dropdown" ref={dropdownRef}>
       <span>{label}</span>
       <div className="dropdown-header" onClick={toggleDropdown}>
         <img src={selected.icon} alt={selected.label} className="option-icon" />

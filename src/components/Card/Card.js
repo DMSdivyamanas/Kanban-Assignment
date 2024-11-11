@@ -2,7 +2,17 @@ import React from "react";
 import "./Card.css";
 import Assets from "../../assets/assests";
 import { getColorForInitial } from "../../utility/utility";
-const Card = ({ id, title, tag, priority, userImage, userName }) => {
+
+const Card = ({
+  id,
+  title,
+  tag,
+  priority,
+  userImage,
+  userName,
+  grouping,
+  status,
+}) => {
   const getPriorityIcon = () => {
     const priorityMap = {
       4: Assets.UrgentPriorityColor,
@@ -12,6 +22,17 @@ const Card = ({ id, title, tag, priority, userImage, userName }) => {
       0: Assets.NoPriority,
     };
     return priorityMap[priority] || Assets.NoPriority;
+  };
+
+  const getStatusIcon = () => {
+    const statusMap = {
+      "In progress": Assets.InProgress,
+      Done: Assets.Done,
+      Canceled: Assets.Cancelled,
+      Backlog: Assets.Backlog,
+      Todo: Assets.ToDo,
+    };
+    return statusMap[status] || Assets.ToDo; // Use title or another relevant property
   };
 
   const getInitial = (name) => {
@@ -36,11 +57,18 @@ const Card = ({ id, title, tag, priority, userImage, userName }) => {
           <div className="status-indicator"></div>
         </div>
       </div>
-      <h3 className="card-title">{title}</h3>
+      <h3 className="card-title">
+        {grouping !== "default" && (
+          <img src={getStatusIcon()} alt="Status" style={{ marginRight: 5 }} />
+        )}
+        {title}
+      </h3>
       <div className="card-footer">
-        <div className="card-icon" style={{ marginRight: 10 }}>
-          <img src={getPriorityIcon()} alt="Priority" />
-        </div>
+        {grouping !== "priority" && (
+          <div className="card-icon" style={{ marginRight: 10 }}>
+            <img src={getPriorityIcon()} alt="Priority" />
+          </div>
+        )}
         <span className="card-type">
           <div className="grey-dot"></div> {tag}
         </span>
