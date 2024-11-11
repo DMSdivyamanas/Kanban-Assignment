@@ -47,7 +47,13 @@ const Column = ({ title, tasks, grouping, sorting, users }) => {
         <img src={Assets.DotMenu} alt="Menu" className="menu-icon" />
       </div>
       {sortedTasks.map((task) => (
-        <Card key={task.id} id={task.id} title={task.title} tag={task.tag} />
+        <Card
+          key={task.id}
+          id={task.id}
+          title={task.title}
+          tag={task.tag}
+          priority={task.priority}
+        />
       ))}
     </div>
   );
