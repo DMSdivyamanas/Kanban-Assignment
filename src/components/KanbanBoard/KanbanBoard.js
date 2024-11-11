@@ -3,7 +3,7 @@ import Column from "./Column";
 import "./KanbanBoard.css";
 import fetchData from "../../api/apiService";
 
-const KanbanBoard = ({ grouping }) => {
+const KanbanBoard = ({ grouping, sorting }) => {
   const [tickets, setTickets] = useState([]);
   const [groupedTickets, setGroupedTickets] = useState({});
   const [users, setUsers] = useState([]);
@@ -19,14 +19,22 @@ const KanbanBoard = ({ grouping }) => {
 
   useEffect(() => {
     const groupTickets = () => {
+      const initialGroupedTickets = {
+        Backlog: [],
+        Todo: [],
+        "In progress": [],
+        Done: [],
+        Canceled: [],
+      };
+
       if (grouping === "priority") {
         return tickets.reduce((acc, ticket) => {
           const priorityMap = {
+            0: "No priority",
             4: "Urgent",
             3: "High",
             2: "Medium",
             1: "Low",
-            0: "No priority",
           };
           const priorityName = priorityMap[ticket.priority];
           if (!acc[priorityName]) acc[priorityName] = [];
@@ -47,21 +55,32 @@ const KanbanBoard = ({ grouping }) => {
           if (!acc[status]) acc[status] = [];
           acc[status].push(ticket);
           return acc;
-        }, {});
+        }, initialGroupedTickets);
       }
     };
 
     setGroupedTickets(groupTickets());
   }, [grouping, tickets, users]);
 
+  const getOrder = () => {
+    if (grouping === "priority") {
+      return ["No priority", "Urgent", "High", "Medium", "Low"];
+    } else if (grouping === "user") {
+      return Object.keys(groupedTickets).sort(); // Alphabetical order
+    } else {
+      return ["Backlog", "Todo", "In progress", "Done", "Canceled"];
+    }
+  };
+
   return (
     <div className="kanban-board">
-      {Object.keys(groupedTickets).map((key) => (
+      {getOrder().map((key) => (
         <Column
           key={key}
           title={key}
-          tasks={groupedTickets[key]}
+          tasks={groupedTickets[key] || []}
           grouping={grouping}
+          sorting={sorting}
           users={users}
         />
       ))}

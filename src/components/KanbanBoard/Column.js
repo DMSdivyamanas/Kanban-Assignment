@@ -3,7 +3,7 @@ import Card from "../Card/Card";
 import "./Column.css";
 import Assets from "../../assets/assests";
 
-const Column = ({ title, tasks, grouping }) => {
+const Column = ({ title, tasks, grouping, sorting, users }) => {
   const getIcon = () => {
     const iconMap = {
       Todo: Assets.ToDo,
@@ -11,21 +11,31 @@ const Column = ({ title, tasks, grouping }) => {
       Done: Assets.Done,
       Canceled: Assets.Cancelled,
       Backlog: Assets.Backlog,
-      "No priority": Assets.NoPriority,
-      Low: Assets.LowPriority,
-      Medium: Assets.MediumPriority,
-      High: Assets.HighPriority,
       Urgent: Assets.UrgentPriorityColor,
+      High: Assets.HighPriority,
+      Medium: Assets.MediumPriority,
+      Low: Assets.LowPriority,
+      "No priority": Assets.NoPriority,
     };
 
     if (grouping === "priority") {
       return iconMap[title] || Assets.NoPriority;
     } else if (grouping === "user") {
-      return Assets.UserImage;
+      const user = users.find((user) => user.id === title);
+      return user ? user.image : Assets.UserImage;
     } else {
       return iconMap[title] || Assets.ToDo;
     }
   };
+
+  const sortedTasks = [...tasks].sort((a, b) => {
+    if (sorting === "priority") {
+      return b.priority - a.priority; // Descending order
+    } else if (sorting === "title") {
+      return a.title.localeCompare(b.title); // Ascending order
+    }
+    return 0;
+  });
 
   return (
     <div className="column">
@@ -36,14 +46,8 @@ const Column = ({ title, tasks, grouping }) => {
         <button className="add-button">+</button>
         <img src={Assets.DotMenu} alt="Menu" className="menu-icon" />
       </div>
-      {tasks.map((task) => (
-        <Card
-          key={task.id}
-          id={task.id}
-          title={task.title}
-          type={task.type}
-          tag={task.tag}
-        />
+      {sortedTasks.map((task) => (
+        <Card key={task.id} id={task.id} title={task.title} tag={task.tag} />
       ))}
     </div>
   );
