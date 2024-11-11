@@ -7,7 +7,7 @@
   margin: 10px 0;
   width: 100%;
   box-sizing: border-box;
-  height: 150px; /* Set a constant height */
+  height: 150px;
 }
 
 .card-title {
@@ -17,7 +17,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   font-weight: 500;
 }
@@ -55,12 +55,12 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background-color: #ccc; /* Background color for the avatar */
-  color: white; /* Text color for the initials */
+  background-color: #ccc;
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px; /* Font size for the initials */
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -82,11 +82,11 @@
 
 .card-type {
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
   font-size: 16px;
-  font-weight: 600; /* Increase font weight */
-  color: #999; /* Adjust color to match the image */
-  background-color: white; /* Adjust background if needed */
+  font-weight: 600;
+  color: #999;
+  background-color: white;
   padding: 5px 10px;
   border-radius: 5px;
   border: 1px solid #f2f2f2;

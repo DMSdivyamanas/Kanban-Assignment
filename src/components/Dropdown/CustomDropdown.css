@@ -1,7 +1,7 @@
 .custom-dropdown {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Align items to the right */
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
@@ -24,14 +24,14 @@
 }
 
 .dropdown-arrow {
-  width: 16px; /* Adjust size as needed */
+  width: 16px;
   height: 16px;
   margin-left: auto;
   transition: transform 0.2s;
 }
 
 .dropdown-arrow.open {
-  transform: rotate(180deg); /* Rotate the arrow when open */
+  transform: rotate(180deg);
 }
 
 .dropdown-list {

@@ -32,7 +32,7 @@ const Card = ({
       Backlog: Assets.Backlog,
       Todo: Assets.ToDo,
     };
-    return statusMap[status] || Assets.ToDo; // Use title or another relevant property
+    return statusMap[status] || Assets.ToDo;
   };
 
   const getInitial = (name) => {

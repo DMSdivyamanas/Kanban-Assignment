@@ -3,17 +3,17 @@
   border-radius: 5px;
   padding: 10px;
   width: 20%;
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  box-sizing: border-box;
 }
 
 @media (max-width: 1300px) {
   .column {
-    width: 50%; /* Full width on small screens */
+    width: 50%;
   }
 }
 @media (max-width: 1300px) {
   .column {
-    width: 50%; /* Full width on small screens */
+    width: 50%;
   }
 }
 

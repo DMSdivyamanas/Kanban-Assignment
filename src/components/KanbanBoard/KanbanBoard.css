@@ -2,16 +2,16 @@
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  flex-wrap: wrap;
 }
 
 @media (max-width: 768px) {
   .kanban-board {
-    flex-direction: column; /* Change direction to column on small screens */
+    flex-direction: column;
   }
 
   .column {
-    width: 100%; /* Make columns full width on small screens */
-    margin-bottom: 20px; /* Add some space between rows */
+    width: 100%;
+    margin-bottom: 20px;
   }
 }
