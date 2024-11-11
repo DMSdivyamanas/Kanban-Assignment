@@ -1,9 +1,8 @@
 .top-bar {
   display: flex;
   align-items: center;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #ddd;
+  padding: 20px 30px;
+  background-color: white;
   width: 100%;
   box-sizing: border-box;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -33,12 +32,13 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0;
+  left: 30px;
+  width: 220px;
   background-color: white;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 10px 25px;
   margin-top: 5px;
   z-index: 1000;
 }
@@ -62,4 +62,6 @@ select {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding: 5px;
+  width: 100px;
+  outline: none;
 }

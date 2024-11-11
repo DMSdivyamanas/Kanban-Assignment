@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./TopBar.css";
 import Assets from "../../assets/assests";
+import CustomDropdown from "../Dropdown/CustomDropdown";
 
 const TopBar = ({ setGrouping, setSorting }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -8,14 +9,6 @@ const TopBar = ({ setGrouping, setSorting }) => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleGroupingChange = (e) => {
-    setGrouping(e.target.value);
-  };
-
-  const handleSortingChange = (e) => {
-    setSorting(e.target.value);
   };
 
   const handleClickOutside = (event) => {
@@ -31,6 +24,17 @@ const TopBar = ({ setGrouping, setSorting }) => {
     };
   }, []);
 
+  const groupingOptions = [
+    { value: "default", label: "Status", icon: Assets.ToDo },
+    { value: "priority", label: "Priority", icon: Assets.UrgentPriorityGrey },
+    { value: "user", label: "User", icon: Assets.UserImage },
+  ];
+
+  const sortingOptions = [
+    { value: "priority", label: "Priority", icon: Assets.UrgentPriorityGrey },
+    { value: "title", label: "Title", icon: Assets.Display },
+  ];
+
   return (
     <div className="top-bar" ref={dropdownRef}>
       <button className="dropdown-button" onClick={toggleDropdown}>
@@ -40,21 +44,18 @@ const TopBar = ({ setGrouping, setSorting }) => {
       </button>
       {isDropdownOpen && (
         <div className="dropdown-menu">
-          <div className="dropdown-item">
-            <span>Grouping</span>
-            <select onChange={handleGroupingChange}>
-              <option value="default">Default</option>
-              <option value="priority">Priority</option>
-              <option value="user">User</option>
-            </select>
-          </div>
-          <div className="dropdown-item">
-            <span>Sorting</span>
-            <select onChange={handleSortingChange}>
-              <option value="priority">Priority</option>
-              <option value="title">Title</option>
-            </select>
-          </div>
+          <CustomDropdown
+            options={groupingOptions}
+            onChange={setGrouping}
+            label="Grouping"
+            topOffset="50%"
+          />
+          <CustomDropdown
+            options={sortingOptions}
+            onChange={setSorting}
+            label="Sorting"
+            topOffset="85%"
+          />
         </div>
       )}
     </div>

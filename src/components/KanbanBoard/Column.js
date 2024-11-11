@@ -43,7 +43,7 @@ const Column = ({ title, tasks, grouping, sorting, users }) => {
         <img src={getIcon()} alt="Status Icon" className="status-icon" />
         <h2 className="column-title">{title}</h2>
         <span className="task-count">{tasks.length}</span>
-        <button className="add-button">+</button>
+        <img src={Assets.Add} alt="Add button" className="add-button" />
         <img src={Assets.DotMenu} alt="Menu" className="menu-icon" />
       </div>
       {sortedTasks.map((task) => (
