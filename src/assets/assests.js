@@ -13,6 +13,7 @@ import InProgress from "./svg/in-progress.svg";
 import UrgentPriorityColor from "./svg/SVG - Urgent Priority colour.svg";
 import UrgentPriorityGrey from "./svg/SVG - Urgent Priority grey.svg";
 import ToDo from "./svg/To-do.svg";
+import UserImage from "./svg/user.svg";
 
 const Assets = {
   DotMenu,
@@ -30,6 +31,7 @@ const Assets = {
   UrgentPriorityColor,
   UrgentPriorityGrey,
   ToDo,
+  UserImage,
 };
 
 export default Assets;

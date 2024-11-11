@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import "./TopBar.css";
 import Assets from "../../assets/assests";
 
-const TopBar = () => {
+const TopBar = ({ setGrouping }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleGroupingChange = (e) => {
+    setGrouping(e.target.value);
   };
 
   return (
@@ -20,16 +24,10 @@ const TopBar = () => {
         <div className="dropdown-menu">
           <div className="dropdown-item">
             <span>Grouping</span>
-            <select>
-              <option>Status</option>
-              <option>Priority</option>
-            </select>
-          </div>
-          <div className="dropdown-item">
-            <span>Ordering</span>
-            <select>
-              <option>Priority</option>
-              <option>Status</option>
+            <select onChange={handleGroupingChange}>
+              <option value="default">Default</option>
+              <option value="priority">Priority</option>
+              <option value="user">User</option>
             </select>
           </div>
         </div>
