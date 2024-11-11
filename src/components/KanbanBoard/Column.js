@@ -2,8 +2,14 @@ import React from "react";
 import Card from "../Card/Card";
 import "./Column.css";
 import Assets from "../../assets/assests";
+import { getColorForInitial } from "../../utility/utility";
 
 const Column = ({ title, tasks, grouping, sorting, users }) => {
+  const getUserName = (userId) => {
+    const user = users.find((user) => user.id === userId);
+    return user ? user.name : "Unknown User";
+  };
+
   const getIcon = () => {
     const iconMap = {
       Todo: Assets.ToDo,
@@ -21,8 +27,16 @@ const Column = ({ title, tasks, grouping, sorting, users }) => {
     if (grouping === "priority") {
       return iconMap[title] || Assets.NoPriority;
     } else if (grouping === "user") {
-      const user = users.find((user) => user.id === title);
-      return user ? user.image : Assets.UserImage;
+      const initial = title.charAt(0).toUpperCase();
+      const backgroundColor = getColorForInitial(initial);
+      return (
+        <div
+          className="user-avatar"
+          style={{ backgroundColor, marginRight: 10 }}
+        >
+          {initial}
+        </div>
+      );
     } else {
       return iconMap[title] || Assets.ToDo;
     }
@@ -40,7 +54,11 @@ const Column = ({ title, tasks, grouping, sorting, users }) => {
   return (
     <div className="column">
       <div className="column-header">
-        <img src={getIcon()} alt="Status Icon" className="status-icon" />
+        {typeof getIcon(title) === "string" ? (
+          <img src={getIcon(title)} alt="Status Icon" className="status-icon" />
+        ) : (
+          getIcon(title)
+        )}
         <h2 className="column-title">{title}</h2>
         <span className="task-count">{tasks.length}</span>
         <img src={Assets.Add} alt="Add button" className="add-button" />
@@ -53,6 +71,7 @@ const Column = ({ title, tasks, grouping, sorting, users }) => {
           title={task.title}
           tag={task.tag}
           priority={task.priority}
+          userName={getUserName(task.userId)}
         />
       ))}
     </div>
