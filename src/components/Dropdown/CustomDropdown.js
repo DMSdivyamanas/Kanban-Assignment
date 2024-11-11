@@ -4,7 +4,10 @@ import Assets from "../../assets/assests";
 
 const CustomDropdown = ({ options, onChange, label, topOffset }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(options[0]);
+  const [selected, setSelected] = useState(() => {
+    const savedValue = localStorage.getItem(label);
+    return options.find((option) => option.value === savedValue) || options[0];
+  });
   const dropdownRef = useRef(null);
 
   const toggleDropdown = () => {
@@ -14,6 +17,7 @@ const CustomDropdown = ({ options, onChange, label, topOffset }) => {
   const handleSelect = (option) => {
     setSelected(option);
     onChange(option.value);
+    localStorage.setItem(label, option.value);
     setIsOpen(false);
   };
 
